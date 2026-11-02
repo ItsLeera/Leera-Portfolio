@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { ArrowDown, ArrowUpRight, Code2, Moon, Sun } from "lucide-react";
 import { FiGithub } from "react-icons/fi";
 import { CiLinkedin } from "react-icons/ci";
@@ -24,8 +24,7 @@ import { FaGithub } from "react-icons/fa";
 import { LuPanelsTopLeft } from "react-icons/lu";
 import { MdOutlineArrowRightAlt } from "react-icons/md";
 import Image from "next/image";
-
-
+import { Year } from "./component/year";
 
 const skill = [
   {
@@ -201,13 +200,10 @@ const progress = [
   },
 ];
 
-
 export default function Home() {
-
   const [lightMode, setLightMode] = useState(false);
 
   const skills = ["JAVA", "FIGMA", "REACT", "SQL", "NEXT_JS", "UI/UX"];
-
 
   return (
     <main
@@ -801,8 +797,13 @@ export default function Home() {
             </a>
           </div>
           <div className="flex gap-2">
-            © {new Date().getFullYear()}
-            <p> Leerabari Kogbara </p>
+            <p>
+              ©{" "}
+              <Suspense fallback={null}>
+                <Year />
+              </Suspense>
+            </p>
+            <p>Leerabari Kogbara</p>
           </div>
         </div>
       </footer>
